@@ -7,42 +7,34 @@
       </div>
       <div class="social">
         <div style="padding-top: 240px;">
-          <social-button
-            :settings="settings"
-            type="Discord"
-            :svg="discordSvgContent"
-            :title="discordTitle"
-            url="https://discord.gg/sq7sH7B"
-            width="400"
-            height="400"
-          ></social-button>
-          <social-button
-            :settings="settings"
-            type="GitHub"
-            :svg="githubSvgContent"
-            :title="githubTitle"
-            url="https://github.com/sitewhere/sitewhere"
-            width="400"
-            height="400"
-          ></social-button>
-          <social-button
-            :settings="settings"
-            type="Website"
-            :svg="websiteSvgContent"
-            :title="websiteTitle"
-            url="http://sitewhere.io/en/"
-            width="400"
-            height="400"
-          ></social-button>
-          <social-button
-            :settings="settings"
-            type="Twitter"
-            :svg="twitterSvgContent"
-            :title="twitterTitle"
-            url="https://twitter.com/sitewhere"
-            width="400"
-            height="400"
-          ></social-button>
+          <social-button :settings="settings"
+                         type="Discord"
+                         :svg="discordSvgContent"
+                         :title="discordTitle"
+                         url="https://discord.gg/sq7sH7B"
+                         width="400"
+                         height="400"></social-button>
+          <social-button :settings="settings"
+                         type="GitHub"
+                         :svg="githubSvgContent"
+                         :title="githubTitle"
+                         url="https://github.com/sitewhere/sitewhere"
+                         width="400"
+                         height="400"></social-button>
+          <social-button :settings="settings"
+                         type="Website"
+                         :svg="websiteSvgContent"
+                         :title="websiteTitle"
+                         url="http://sitewhere.io/en/"
+                         width="400"
+                         height="400"></social-button>
+          <social-button :settings="settings"
+                         type="Twitter"
+                         :svg="twitterSvgContent"
+                         :title="twitterTitle"
+                         url="https://twitter.com/sitewhere"
+                         width="400"
+                         height="400"></social-button>
         </div>
       </div>
       <v-container>
@@ -50,37 +42,50 @@
           <div class="sitewhere-logo"></div>
           <sw-error-banner :error="error" />
           <v-card-text class="ma-0 pa-1">
-            <div
-              style="width: 100%; text-align: center; color: #333; font-size: 35px; font-family: RobotoRegular"
-            >Instance Administration</div>
+            <div style="width: 100%; text-align: center; color: #333; font-size: 35px; font-family: RobotoRegular">Instance Administration</div>
           </v-card-text>
           <v-card-text>
-            <v-layout row wrap>
-              <v-flex xs12 class="mb-2">
-                <v-text-field hide-details label="Username" v-model="username"></v-text-field>
+            <v-layout row
+                      wrap>
+              <v-flex xs12
+                      class="mb-2">
+                <v-text-field hide-details
+                              label="Username"
+                              v-model="username"></v-text-field>
                 <div class="verror">
                   <span v-if="$v.username.$invalid && $v.$dirty">Username is required.</span>
                 </div>
               </v-flex>
-              <v-flex xs12 class="mb-4">
-                <v-text-field hide-details label="Password" v-model="password" type="password"></v-text-field>
+              <v-flex xs12
+                      class="mb-4">
+                <v-text-field hide-details
+                              label="Password"
+                              v-model="password"
+                              type="password"></v-text-field>
                 <div class="verror">
                   <span v-if="$v.password.$invalid && $v.$dirty">Password is required.</span>
                 </div>
               </v-flex>
               <v-flex xs11>
-                <remotes-dropdown :remotes="remotes" @selected="onConnectionUpdated" />
+                <remotes-dropdown :remotes="remotes"
+                                  @selected="onConnectionUpdated" />
               </v-flex>
               <v-flex xs1>
-                <v-icon class="pt-2 pl-3 blue--grey text--darken-2" @click="onEditRemotes">edit</v-icon>
+                <v-icon class="pt-2 pl-3 blue--grey text--darken-2"
+                        @click="onEditRemotes">edit</v-icon>
               </v-flex>
             </v-layout>
           </v-card-text>
           <v-card-actions class="pr-2">
             <v-spacer></v-spacer>
-            <v-btn type="submit" color="primary" dark @click="onLogin" :loading="loggingIn">Login</v-btn>
+            <v-btn type="submit"
+                   color="primary"
+                   dark
+                   @click="onLogin"
+                   :loading="loggingIn">Login</v-btn>
           </v-card-actions>
-          <v-dialog v-model="noserver" max-width="300">
+          <v-dialog v-model="noserver"
+                    max-width="300">
             <v-card>
               <v-card-title class="headline">Instance Not Available</v-card-title>
               <v-card-text>
@@ -90,33 +95,51 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" flat @click="noserver = false">OK</v-btn>
+                <v-btn color="primary"
+                       flat
+                       @click="noserver = false">OK</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <remotes-dialog ref="remotes" @save="onRemotesUpdated" />
+          <remotes-dialog ref="remotes"
+                          @save="onRemotesUpdated" />
         </div>
       </v-container>
-      <div style="-webkit-app-region: drag" class="draggable-area"></div>
-      <v-system-bar color="transparent" class="title-bar">
-        <v-btn
-          flat
-          icon
-          small
-          class="ma-0 mt-2 title-bar-button"
-          color="grey"
-          @click="openWebTools"
-        >
+      <div style="-webkit-app-region: drag"
+           class="draggable-area"></div>
+      <v-system-bar color="transparent"
+                    class="title-bar">
+        <v-btn flat
+               icon
+               small
+               class="ma-0 mt-2 title-bar-button"
+               color="grey"
+               @click="openWebTools">
           <v-icon>menu</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat icon small class="ma-0 mt-2 title-bar-button" color="grey" @click="minWindow">
+        <v-btn flat
+               icon
+               small
+               class="ma-0 mt-2 title-bar-button"
+               color="grey"
+               @click="minWindow">
           <v-icon>remove</v-icon>
         </v-btn>
-        <v-btn flat icon small class="ma-0 mt-2 title-bar-button" color="grey" @click="maxWindow">
+        <v-btn flat
+               icon
+               small
+               class="ma-0 mt-2 title-bar-button"
+               color="grey"
+               @click="maxWindow">
           <v-icon>check_box_outline_blank</v-icon>
         </v-btn>
-        <v-btn flat icon small class="ma-0 mt-2 title-bar-button" color="grey" @click="closeWindow">
+        <v-btn flat
+               icon
+               small
+               class="ma-0 mt-2 title-bar-button"
+               color="grey"
+               @click="closeWindow">
           <v-icon>close</v-icon>
         </v-btn>
       </v-system-bar>
@@ -183,8 +206,8 @@ const twitterTitle: string = "Follow SiteWhere on Twitter";
 export default class Login extends Vue {
   noserver: boolean = false;
   error: string | null = null;
-  username: string = "";
-  password: string = "";
+  username: string = "admin";
+  password: string = "password";
   loggingIn: boolean = false;
   settings: {} | null = null;
   discordSvgContent: string = discordSvgContent;
